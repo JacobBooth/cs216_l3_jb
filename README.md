@@ -36,51 +36,51 @@ Army Class
 
 Main Menu
 
-Print items in the original order.
+~~Print items in the original order.~~
 
-Sort creatures (with submenu).
+~~Sort creatures (with submenu).~~
 
-Search for creatures (by name or type).
+~~Search for creatures (by name or type).~~
 
-Quit.
+~~Quit.~~
 
-Sort Submenu
+~~Sort Submenu~~
 
-Sort by name (descending order).
+~~Sort by name (descending order).~~
 
-Sort by type (descending order).
+~~Sort by type (descending order).~~
 
-Return to the main menu.
+~~Return to the main menu.~~
 
-Search Menu
+~~Search Menu~~
 
-Single option to search by name or type (case-insensitive, partial match).
+~~Single option to search by name or type (case-insensitive, partial match).~~
 
-If no matches are found, display an appropriate message.
+~~If no matches are found, display an appropriate message.~~
 
 3. Searching Implementation
 
-One function must handle both name and type searches.
+~~One function must handle both name and type searches.~~
 
-Uses partial search with std::find().
+~~Uses partial search with std::find().~~
 
-All names and types are stored in lowercase for easier comparisons.
+~~All names and types are stored in lowercase for easier comparisons.~~
 
 4. Sorting Implementation
 
-Bubble Sort must be used.
+~~Bubble Sort must be used.~~
 
-Sorting is done using pointers (swapping pointers instead of objects for efficiency).
+~~Sorting is done using pointers (swapping pointers instead of objects for efficiency).~~
 
-No separate swap function; implement swapping directly inside the sorting function.
+~~No separate swap function; implement swapping directly inside the sorting function.~~
 
 5. File Handling
 
-Load records from an input file (unknown length).
+~~Load records from an input file (unknown length).~~
 
-No record validation (assume well-formed data).
+~~No record validation (assume well-formed data).~~
 
-Names and types may have mixed capitalization (convert to lowercase when reading).
+~~Names and types may have mixed capitalization (convert to lowercase when reading).~~
 
 Example format:
 
@@ -89,11 +89,11 @@ Troll  Grok  40 90
 
 6. Output Formatting
 
-Table format whenever possible.
+~~Table format whenever possible.~~
 
-Left-align text (names, types) and right-align numbers (health, strength).
+~~Left-align text (names, types) and right-align numbers (health, strength).~~
 
-Use consistent decimal places for numerical values.
+~~Use consistent decimal places for numerical values.~~
 
 Example output:
 
