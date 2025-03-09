@@ -6,11 +6,11 @@ Description-
 
 This project is a menu-driven application that manages a group of Creature objects within an Army class. It allows users to:
 
-Print creatures in their original order.
+~~Print creatures in their original order.~~
 
-Sort creatures by name or type in descending order.
+~~Sort creatures by name or type in descending order.~~
 
-Search for creatures by partial name or type (case-insensitive search).
+~~Search for creatures by partial name or type (case-insensitive search).~~
 
 Load creature data from an input file of unknown length.
 
@@ -18,19 +18,19 @@ Specifications and Requirements-
 
 1. Class Design
 
-Creature Class
+~~Creature Class~~
 
-Stores the name and type of the creature (stored in lowercase for case-insensitive searching).
+~~Stores the name and type of the creature (stored in lowercase for case-insensitive searching).~~
 
-Stores health and strength attributes.
+~~Stores health and strength attributes.~~
 
-Provides functions to return attributes and calculate damage.
+~~Provides functions to return attributes and calculate damage.~~
 
 Army Class
 
-Manages an array of pointers to Creature objects.
+~~Manages an array of pointers to Creature objects.~~
 
-Provides functions for loading, sorting, searching, and printing creatures.
+~~Provides functions for loading, sorting, searching, and printing creatures.~~
 
 2. Menu System (Implemented using enum and switch)
 
