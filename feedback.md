@@ -1,1 +1,1 @@
-
+* uses continue and/or break (Ok in switch) and/or go to and/or exit() in loop(s) and/or if(s) and/or empty return; there is no situation where same effect cannot be achieved by a logical statement; in other words, there is no situation in this realm that cannot be described by using a combination of relational, comparison, and logical operators; you an always  write a loop condition to exit naturally when needed; see the syllabus – stopped grading
