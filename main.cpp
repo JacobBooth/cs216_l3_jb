@@ -18,7 +18,10 @@ const int MAX_CREATURES = 100;
 enum MenuOptions { PRINT = 1, SORT, SEARCH, EXIT };
 enum SortOptions { SORT_NAME = 1, SORT_TYPE, SORT_BACK };
 
-// Creature Class
+// Function Prototypes (Declare before main)
+void displayMenu();
+void displaySortMenu();
+
 class Creature {
 private:
     string name;
@@ -49,7 +52,6 @@ public:
     }
 };
 
-// Army Class
 class Army {
 private:
     Creature* creatures[MAX_CREATURES];
@@ -95,19 +97,17 @@ public:
     }
 
     void bubbleSort(bool sortByType = false) {
-        for (int i = 0; i < count - 1; ++i) {
-            for (int j = 0; j < count - i - 1; ++j) {
-                if (sortByType) {
-                    if (creatures[j]->getType() < creatures[j + 1]->getType()) {
-                        swap(creatures[j], creatures[j + 1]);
-                    }
-                } else {
-                    if (creatures[j]->getName() < creatures[j + 1]->getName()) {
-                        swap(creatures[j], creatures[j + 1]);
-                    }
+        bool swapped;
+        do {
+            swapped = false;
+            for (int i = 0; i < count - 1; ++i) {
+                if ((sortByType && creatures[i]->getType() < creatures[i + 1]->getType()) ||
+                    (!sortByType && creatures[i]->getName() < creatures[i + 1]->getName())) {
+                    swap(creatures[i], creatures[i + 1]);
+                    swapped = true;
                 }
             }
-        }
+        } while (swapped);
     }
 
     void searchCreature(const string &query) const {
@@ -127,7 +127,40 @@ public:
     }
 };
 
-// Function to display menu
+int main() {
+    Army army;
+    army.loadFromFile("creatures.txt");
+
+    int choice = PRINT;
+    while (choice != EXIT) {
+        displayMenu();
+        cin >> choice;
+
+        if (choice == PRINT) {
+            army.printCreatures();
+        } else if (choice == SORT) {
+            int sortChoice;
+            displaySortMenu();
+            cin >> sortChoice;
+            if (sortChoice == SORT_NAME || sortChoice == SORT_TYPE) {
+                army.bubbleSort(sortChoice == SORT_TYPE);
+                cout << "Creatures sorted successfully.\n";
+            }
+        } else if (choice == SEARCH) {
+            string query;
+            cout << "Enter name or type to search: ";
+            cin >> query;
+            army.searchCreature(query);
+        } else if (choice != EXIT) {
+            cout << "Invalid choice. Try again.\n";
+        }
+    }
+
+    cout << "Exiting program.\n";
+    return 0;
+}
+
+// Function Definitions
 void displayMenu() {
     cout << "\nMenu:\n";
     cout << "1. Print Creatures\n";
@@ -137,7 +170,6 @@ void displayMenu() {
     cout << "Enter choice: ";
 }
 
-// Function to display sorting submenu
 void displaySortMenu() {
     cout << "\nSort by:\n";
     cout << "1. Name (Descending)\n";
@@ -145,60 +177,20 @@ void displaySortMenu() {
     cout << "3. Back\n";
     cout << "Enter choice: ";
 }
-int main() {
-    Army army;
-    army.loadFromFile("creatures.txt");
-
-    int choice;
-    do {
-        displayMenu();
-        cin >> choice;
-
-        switch (choice) {
-            case PRINT:
-                army.printCreatures();
-                break;
-            case SORT:
-                int sortChoice;
-                displaySortMenu();
-                cin >> sortChoice;
-                if (sortChoice == SORT_NAME || sortChoice == SORT_TYPE) {
-                    army.bubbleSort(sortChoice == SORT_TYPE);
-                    cout << "Creatures sorted successfully.\n";
-                }
-                break;
-            case SEARCH:
-                {
-                    string query;
-                    cout << "Enter name or type to search: ";
-                    cin >> query;
-                    army.searchCreature(query);
-                }
-                break;
-            case EXIT:
-                cout << "Exiting program.\n";
-                break;
-            default:
-                cout << "Invalid choice. Try again.\n";
-        }
-    } while (choice != EXIT);
-
-    return 0;
-}
 
 /*
 Creatures loaded successfully.
 
 Menu:
-1. Print Creatures
-2. Sort Creatures
+1. Print Creatures 
+2. Sort Creatures  
 3. Search Creatures
 4. Exit
-Enter choice: 1
+Enter choice: 1    
 
-Name        Type        Health   Strength
+Name        Type        Health   Strength 
 ------------------------------------------
-Gandalf     Wizard           200     180
+Gandalf     Wizard           200     180  
 Aragorn     Ranger           150     140
 Legolas     Archer           130     120
 Gimli       Warrior          160     150
@@ -233,37 +225,11 @@ Menu:
 2. Sort Creatures
 3. Search Creatures
 4. Exit
-Enter choice: 1
-
-Name        Type        Health   Strength
-------------------------------------------
-Uruk-hai    Berserker        140     130
-Treebeard   Ent              220     160
-Shelob      Beast            200     150
-Sauron      DarkLord         300     250
-Saruman     Wizard           190     170
-Orc         Brute            120     100
-Nazgul      Wraith           180     160
-Legolas     Archer           130     120
-Gimli       Warrior          160     150
-Gandalf     Wizard           200     180
-Galadriel   Elf              180     150
-Frodo       Hobbit           100      60
-Elrond      Elf              170     140
-Balrog      Demon            250     230
-Aragorn     Ranger           150     140
-
-Menu:
-1. Print Creatures
-2. Sort Creatures
-3. Search Creatures
-4. Exit
 Enter choice: 3
-Enter name or type to search: elf 
+Enter name or type to search: gimli
 
 Search Results:
-Galadriel   Elf              180     150
-Elrond      Elf              170     140
+Gimli       Warrior          160     150
 
 Menu:
 1. Print Creatures
@@ -271,4 +237,5 @@ Menu:
 3. Search Creatures
 4. Exit
 Enter choice: 4
-Exiting program.*/
+Exiting program.
+*/
